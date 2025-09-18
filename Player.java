@@ -14,22 +14,40 @@ public class Player
 
     public void playTurn()
     {
-        //do stuff
+        //hit or not
+        
     }
 
     public void hit()
     {
-        //do stuff
+        this.getCard(deck);
     }
 
     public int getHandValue()
     {
-        //do stuff
-        return 1;
+        int handValue = 0;
+        int numAces = 0;
+
+        for(Card card : this.hand)
+        {
+            handValue += card.getValue();
+            if(card.getFace() == "ace")
+            {
+                numAces =+ 1;
+            }
+        }
+
+        while((handValue > 21) | (numAces > 0))
+        {
+            handValue -= 10;
+        }
+        //PROBABLY LOGIC ERROR  
+        
+        return(handValue);
     }
 
     public void getCard(Deck deck)
     {
-        //do stuff
+        this.hand.add(deck.getTopCard());
     }
 }
