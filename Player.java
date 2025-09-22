@@ -14,8 +14,13 @@ public class Player
 
     public void playTurn()
     {
-        //hit or not
-        
+        //play turn (during turn player can hit as many times as they want)
+        //while break == false {
+            //scanner for hit or stay
+            
+            //if  hand val is more than 21 or they stay end loop (Break == True) 
+            //else: this.hit()
+            
     }
 
     public void hit()
@@ -49,5 +54,22 @@ public class Player
     public void getCard(Deck deck)
     {
         this.hand.add(deck.getTopCard());
+    }
+
+    public int getBet()
+    {
+        return 1;
+    }
+
+    public void setBet(int newBet)
+    {
+        //set bet to newBet
+    }
+
+    public void handleBet()
+    {
+        //if their hand value is over 21 or below dealer -> they lose (lose money bet)
+        //else if their hand value is eqaul to dealer -> they push (get back money)
+        // else -> they win (recieve double thier money bet)
     }
 }
