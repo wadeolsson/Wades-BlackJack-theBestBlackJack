@@ -1,18 +1,21 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player
 {
     private String name;
     private double money;
     private ArrayList<Card> hand = new ArrayList<>();
+    private double bet;
 
     public Player(String name)
     {
         this.name = name;
         this.money = 100;
+        this.bet = 0;
     }
 
-    public void playTurn()
+    public void playTurn(Deck deck)
     {
         //play turn (during turn player can hit as many times as they want)
         //while break == false {
@@ -20,10 +23,36 @@ public class Player
             
             //if  hand val is more than 21 or they stay end loop (Break == True) 
             //else: this.hit()
+        boolean cont = true;
+        while(cont = true)
+        {
+            String hitStay;
+            System.out.println((String)("You have 21" + this.getHandValue()));
+            Scanner scannerHitStay= new Scanner(System.in);
+            System.out.println("Do you want to hit or stay?");
+            hitStay = scannerHitStay.nextLine();
+
+            if (hitStay == "hit")
+            {
+                hit(deck);
+            }
+
+            else if (hitStay == "stay")
+            {
+                cont = false;
+            }
+
+            else
+            {
+                System.out.println("something went wrong, please retype. Make sure you typed 'hit' or 'stay'.");
+            }
+
+
+        }
             
     }
 
-    public void hit()
+    public void hit(Deck deck)
     {
         this.getCard(deck);
     }
@@ -36,7 +65,7 @@ public class Player
         for(Card card : this.hand)
         {
             handValue += card.getValue();
-            if(card.getFace() == "ace")
+            if(card.getFace().equals("A"))
             {
                 numAces =+ 1;
             }
@@ -56,14 +85,31 @@ public class Player
         this.hand.add(deck.getTopCard());
     }
 
-    public int getBet()
+    public double getBet()
     {
-        return 1;
+        return(this.bet);
     }
 
-    public void setBet(int newBet)
+    public void setBet()
     {
-        //set bet to newBet
+
+        double newBet;
+        Scanner scannerBet= new Scanner(System.in);
+        System.out.println("Enter number of players (int)");
+        newBet = scannerBet.nextInt();
+        scannerBet.nextLine();
+
+        if(bet > money)
+        {
+            System.out.println("All in!!!");
+            this.bet = this.money;
+        }
+
+        else
+        {
+            this.bet = newBet;
+        }
+        
     }
 
     public void handleBet()
@@ -71,5 +117,7 @@ public class Player
         //if their hand value is over 21 or below dealer -> they lose (lose money bet)
         //else if their hand value is eqaul to dealer -> they push (get back money)
         // else -> they win (recieve double thier money bet)
+
+
     }
 }

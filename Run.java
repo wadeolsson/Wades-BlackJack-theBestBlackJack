@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Run {
@@ -18,23 +19,24 @@ public class Run {
     scannerObj.nextLine();
 
     //Create n player objects for each of those inputs with scanners for names
-    ArrayList players = new ArrayList<Player>();
+    ArrayList<Player> players = new ArrayList<>();
 
     for(int i = 0; i < numPlayers; i++)
     {
-    String playerName;
-    Scanner scannerName= new Scanner(System.in);
-    System.out.println((String)("Enter name of player " + i));
-    playerName = scannerName.nextLine();
+        String playerName;
+        Scanner scannerName= new Scanner(System.in);
+        System.out.println("Enter name of player " + (i+1));
+        playerName = scannerName.nextLine();
 
-    if(playerName == "wade")
-    {
-        System.out.println("Wow! our favorite player!!!");
-    }
 
-    Player playerName = new Player(playerName);
+        if(playerName.equals( "wade"))
+        {
+            System.out.println("Wow! our favorite player!!!");
+        }
 
-    players.add(playerName);
+        Player player = new Player(playerName);
+
+        players.add(player);
     }
     //start game while loop (round loop, each iteration is one round of play)
     boolean cont = true;
@@ -42,13 +44,14 @@ public class Run {
     {
     //during loop:
 
-        for(int i = 0; i < numPlayers; i++)
+        for(Player player : players)
         {
         //loop for players to retrieve bets
             //Make player method setBet
             //if bet (getBet) is greater than players money than set bet to their money amount (they bet all of their money, they go all in)  MOVE LOGIC TO PLAYER
             //give every player a hand including dealer.
 
+            player.setBet();
 
         }
        
