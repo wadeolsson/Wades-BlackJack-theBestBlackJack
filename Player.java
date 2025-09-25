@@ -27,26 +27,26 @@ public class Player
         while(cont = true)
         {
             String hitStay;
-            System.out.println((String)("You have 21" + this.getHandValue()));
+            System.out.println("You have" + this.hand);
             Scanner scannerHitStay= new Scanner(System.in);
             System.out.println("Do you want to hit or stay?");
             hitStay = scannerHitStay.nextLine();
 
-            if (hitStay == "hit")
+            if (hitStay.equals("hit"))
             {
                 hit(deck);
             }
 
-            else if (hitStay == "stay")
+            else if (hitStay.equals("stay") | (getHandValue() > 21)|())
             {
                 cont = false;
+                break;
             }
 
             else
             {
                 System.out.println("something went wrong, please retype. Make sure you typed 'hit' or 'stay'.");
             }
-
 
         }
             
@@ -95,7 +95,7 @@ public class Player
 
         double newBet;
         Scanner scannerBet= new Scanner(System.in);
-        System.out.println("Enter number of players (int)");
+        System.out.println("How much money do you" + this.name +"want to bet? You currently have "+ this.money);
         newBet = scannerBet.nextInt();
         scannerBet.nextLine();
 
